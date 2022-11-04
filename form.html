@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <title>Registration form</title>
+    <style>
+        h1 {
+            text-align: center;
+        }
+
+        .button {
+            background-color: greenyellow;
+        }
+
+        /* For the red asterisk "*" after every compulsory input */
+        .label:before {
+            content: "*";
+            color: red
+        }
+
+        .label:after {
+            content: "*";
+            color: red
+        }
+
+        /* To center the submit button */
+        .center {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+
+</head>
+
+<body>
+    <form action="/action_page.php">
+        <div class="container-fluid mt-3">
+            <h1>Registration Form</h1>
+            <div class="row">
+                <div class="col-lg-6">
+                    <label for="fname">First name</label>
+                    <span style="color:#ff0000">*</span>
+                    <br>
+                    <input type="text" id="fname" name="fname" maxlength="30" placeholder="Enter your first name">
+                </div>
+                <div class="col-lg-6">
+                    <label for="lname">Last name</label>
+                    <span style="color:#ff0000">*</span>
+                    <br>
+                    <input type="text" id="lname" name="lname" maxlength="30" placeholder="Enter your last name">
+                </div>
+            </div>
+            <br>
+            <label for="email">Email</label>
+            <span style="color:#ff0000">*</span><br>
+            <input type="text" id="email" name="email" placeholder="Enter your email address">
+            <br><br>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="pass">Password (6-30 characters)</label>
+                    <span style="color:#ff0000">*</span>
+                    <br>
+                    <input type="password" id="pass" name="pass" maxlength="30" placeholder="Enter your password">
+                </div>
+                <div class="col-md-6">
+                    <label for="cpass">Confirm Password</label>
+                    <span style="color:#ff0000">*</span>
+                    <br>
+                    <input type="password" id="cpass" name="cpass" maxlength="30" placeholder="Re-enter your password">
+                </div>
+            </div>
+            <br>
+
+            <div class="row">
+                <div class="col-lg-6">
+                    <label for="year">Year born</label>
+                    <span style="color:#ff0000">*</span>
+                    <select class="form-select" id="year">
+                        <option selected>-choose-</option>
+                        <option value="2000">1990</option>
+                        <option value="2001">1991</option>
+                        <option value="2002">1992</option>
+                        <option value="2003">1993</option>
+                        <option value="2004">1994</option>
+                        <option value="2005">1995</option>
+                        <option value="2006">1996</option>
+                        <option value="2007">1997</option>
+                        <option value="2004">1998</option>
+                        <option value="2005">1999</option>
+                        <option value="2006">2000</option>
+                    </select>
+                </div>
+
+                <div class="col-lg-6">
+                    <label for="gender">Gender</label><br>
+                    <input type="radio" id="male" value="Male">
+                    <label for="male">Male</label>
+                    <input type="radio" id="female" value="Female">
+                    <label for="female">Female</label>
+
+                </div>
+            </div>
+            <br>
+            <label for="city">City</label>
+            <span style="color:#ff0000">*</span>
+            <select class="form-select" id="city">
+                <option selected>-choose-</option>
+                <option value="Ho Chi Minh">Ho Chi Minh</option>
+                <option value="Hanoi">Hanoi</option>
+                <option value="Hue">Hue</option>
+                <option value="Da Nang">Da Nang</option>
+                <option value="Hai Phong">Hai Phong</option>
+                <option value="Da Lat">Da Lat</option>
+                <option value="Can Tho">Can Tho</option>
+                <option value="Vung Tau">Vung Tau</option>
+                <option value="Vung Tau">Quang Ninh</option>
+                <option value="Vung Tau">Other</option>
+            </select>
+            <br><br><br>
+            <div class="center">
+                <input type="button" value="Submit" class="button" onclick="validateForm()" />
+            </div>
+        </div>
+
+    </form>
+
+
+
+
+
+    <script>
+
+        function validateEmail(inputText) {
+            var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+
+            return inputText.match(mailformat);
+            // if (inputText.value.match(mailformat)) {
+            //     return true
+            // }
+            // else {
+            //     return false
+            // }
+        }
+
+        function validateForm() {
+            // Get the value of the input field 
+            let lastName = document.getElementById("lname").value;
+            let firstName = document.getElementById("fname").value;
+            let pass1 = document.getElementById("pass").value;
+            let pass2 = document.getElementById("cpass").value;
+            let textEmail = document.getElementById("email").value;
+            let yearBorn = document.getElementById("year").value;
+            let yourCity = document.getElementById("city").value;
+
+            if (firstName.length == 0) {
+                alert("You have not enter your first name")
+            }
+            else if (lastName.length == 0) {
+                alert("You have not enter your last name")
+            }
+            else if (textEmail.length == 0) {
+                alert("You have not enter your email")
+            }
+            else if (pass1.length == 0 || (pass2.length == 0 & pass1.length == 0)) {
+                alert("You have not enter your password")
+            }
+            else if (yearBorn == "") {
+                alert("You must select the year you are born")
+            }
+            else if (yourCity == "") {
+                alert("You must select the city you live in")
+            }
+            else if (!validateEmail(textEmail)) {
+                alert("Invalid email format!")
+            }
+            else if ((lastName.length < 2 && lastName.length > 30) || (firstName.length < 2 && firstName.length > 30)) {
+                alert("Your last/ first name must be between 2 to 30 characters.")
+            }
+            else if ((pass1.length < 6 && pass2.length > 30) || (pass1.length < 6 && pass2.length > 30)) {
+                alert("Your password and confirm password must be between 6 to 30 characters.")
+            }
+            else if (pass1 != pass2) {
+                alert("Please confirm your password again.")
+            } else {
+                alert("Congratulation! You have registered successfully")
+            }
+        }
+    </script>
+</body>
+
+</html>
